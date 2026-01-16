@@ -50,7 +50,7 @@ function App() {
           ref={switchBtnRef}
           onClick={onSwitchLanguage}
         >
-          Switch to {language === 'EN' ? 'Irish' : 'English'} version
+          Switch to {language === 'EN' ? 'Irish' : 'English'}
         </button>
       </div>
       <Wordle

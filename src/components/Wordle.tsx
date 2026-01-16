@@ -236,8 +236,22 @@ export default function Wordle({
     (entry) => entry.word === wordToGuess
   )?.meaning;
 
+  const onHintClick = () => {
+    if (wordMeaning) {
+      alert(`The word means: ${wordMeaning} 😎`);
+    }
+  };
+
   return (
     <article className='wordle'>
+      {wordMeaning && (
+        <button
+          className='wordle__button--primary'
+          onClick={onHintClick}
+        >
+          Hint 🙏
+        </button>
+      )}
       <div className='wordle__status'>
         {/* <p className='wordle__status__message'>Word: {wordToGuess}</p> */}
         {gameState === 'won' && (
