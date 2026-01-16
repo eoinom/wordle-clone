@@ -37,7 +37,7 @@ function App() {
   };
 
   return (
-    <>
+    <section className='app'>
       <h1>{language === 'EN' ? 'Wordle' : 'Focail'}</h1>
       <div className='buttonsContainer'>
         <button
@@ -64,7 +64,7 @@ function App() {
         resetGame={resetGame}
         maxGuesses={6}
       />
-    </>
+    </section>
   );
 }
 
