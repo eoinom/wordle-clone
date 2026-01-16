@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Wordle from './components/Wordle';
 import { WORDS_LIST } from './data/words';
 import {
@@ -22,22 +22,34 @@ const getWordOfTheDay = (language: Language) => {
 function App() {
   const [language, setLanguage] = useState<Language>('EN');
   const [gameKey, setGameKey] = useState(0);
+  const resetBtnRef = useRef<HTMLButtonElement>(null);
+  const switchBtnRef = useRef<HTMLButtonElement>(null);
 
   const resetGame = () => {
     setGameKey((prevKey) => prevKey + 1);
+    resetBtnRef.current?.blur();
   };
 
   const onSwitchLanguage = () => {
     setLanguage((currentLanguage) => (currentLanguage === 'EN' ? 'IR' : 'EN'));
     resetGame();
+    switchBtnRef.current?.blur();
   };
 
   return (
     <>
       <h1>{language === 'EN' ? 'Wordle' : 'Focail'}</h1>
       <div className='buttonsContainer'>
-        <button onClick={resetGame}>Reset Game</button>
-        <button onClick={onSwitchLanguage}>
+        <button
+          ref={resetBtnRef}
+          onClick={resetGame}
+        >
+          Reset Game
+        </button>
+        <button
+          ref={switchBtnRef}
+          onClick={onSwitchLanguage}
+        >
           Switch to {language === 'EN' ? 'Irish' : 'English'} version
         </button>
       </div>
